@@ -88,20 +88,20 @@ while start <= end:
 	
 		# Align to reference (moves COM of backbone to origin)
 		u_all.translate(-u_backbone.center_of_mass())
-		# Calculate the rotational matrix to align u to the ref
-		R, rmsd = rotation_matrix(u_align.coordinates(), pos0)
-		# Apply rotation matrix to atoms within u
-		u_all.rotate(R)
 
 		# Fix the wrapping issues
 		for i in range(num_res):
 			COM = np.zeros(3)
 			# Calculate the COM of residues;
 			COM = rest.residues[i].center_of_mass()
-			
 			# CALCULATING AND APPLYING THE TRANSLATIONAL MATRIX TO RESIDUE i
 			t = wrapping(COM,dimensions)
 			rest.residues[i].atoms.translate(t)
+
+		# Calculate the rotational matrix to align u to the ref
+		R, rmsd = rotation_matrix(u_align.coordinates(), pos0)
+		# Apply rotation matrix to atoms within u
+		u_all.rotate(R)
 
 		# loop through selections and compute RMSD
 		for i in range(nSel):
