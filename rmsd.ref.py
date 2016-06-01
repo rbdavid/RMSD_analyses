@@ -105,10 +105,11 @@ while start <= end:
 
 		# loop through selections and compute RMSD
 		for i in range(nSel):
+			temp_atoms = len(u_sel[i].atoms)
 			u_coords = u_sel[i].coordinates()
 			ref_coords = ref_sel[i]
 			
-			rmsd = RMSD(u_coords,ref_coords)
+			rmsd = RMSD(u_coords,ref_coords,temp_atoms)
 			out1.write('%10.6f   ' %(rmsd))
 
 		out1.write('\n')
