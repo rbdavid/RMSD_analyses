@@ -42,7 +42,7 @@ ref_align = ref.select_atoms(alignment)
 ref_all = ref.select_atoms('all')
 ref_backbone = ref.select_atoms('backbone')
 ref_all.translate(-ref_backbone.center_of_mass())
-pos0 = ref_align.coordinates()
+pos0 = ref_align.positions
 
 u = MDAnalysis.Universe('%s' %(pdb))
 u_align = u.select_atoms(alignment)
@@ -69,7 +69,7 @@ for i in range(nSel):
 		ffprint('Number of atoms do not match for selection %s' %(i))
 		sys.exit()
 
-	ref_sel[i] = ref_temp.coordinates()
+	ref_sel[i] = ref_temp.positions
 
 # open output files
 out1 = open('%s.rmsd.dat' %(system), 'w')
@@ -99,14 +99,14 @@ while start <= end:
 			rest.residues[i].atoms.translate(t)
 
 		# Calculate the rotational matrix to align u to the ref
-		R, rmsd = rotation_matrix(u_align.coordinates(), pos0)
+		R, rmsd = rotation_matrix(u_align.positions, pos0)
 		# Apply rotation matrix to atoms within u
 		u_all.rotate(R)
 
 		# loop through selections and compute RMSD
 		for i in range(nSel):
 			temp_atoms = len(u_sel[i].atoms)
-			u_coords = u_sel[i].coordinates()
+			u_coords = u_sel[i].positions
 			ref_coords = ref_sel[i]
 			
 			rmsd = RMSD(u_coords,ref_coords,temp_atoms)
