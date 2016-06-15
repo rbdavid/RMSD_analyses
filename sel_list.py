@@ -22,5 +22,12 @@ sel.append(['motif_6','protein and resid 286:297 and not name H*'])
 sel.append(['beta_wedges','protein and resid 260:280 and not name H*'])
 sel.append(['d3_gate','protein and resid 434:442 and not name H*'])
 sel.append(['a2_1','protein and resid 61:69 and not name H*'])
+
+sel.append(['nucleic','(nucleic or resname A5 or resname A3 or resname U5) and not name H*'])
+#sel.append(['ATP','resname atp and not name H*'])
+#sel.append(['ADP','resname adp and not name H*'])
+#sel.append(['PHX','resname PHX and not name H*'])
+#sel.append(['MG','resname MG'])
+
 #sel.append(['',''])
 
