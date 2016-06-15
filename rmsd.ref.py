@@ -92,11 +92,12 @@ while start <= end:
 		# Fix the wrapping issues
 		for i in range(num_res):
 			COM = np.zeros(3)
+			res = rest.residues[i]
 			# Calculate the COM of residues;
-			COM = rest.residues[i].center_of_mass()
+			COM = res.center_of_mass()
 			# CALCULATING AND APPLYING THE TRANSLATIONAL MATRIX TO RESIDUE i
 			t = wrapping(COM,dimensions)
-			rest.residues[i].atoms.translate(t)
+			res.atoms.translate(t)
 
 		# Calculate the rotational matrix to align u to the ref
 		R, rmsd = rotation_matrix(u_align.positions, pos0)
