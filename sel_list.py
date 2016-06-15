@@ -1,5 +1,3 @@
-#!/mnt/lustre_fs/users/mjmcc/apps/python2.7/bin/python
-##!/Library/Frameworks/Python.framework/Versions/2.7/bin/python
 
 sel = []
 sel.append(['aligned_CAs','protein and (resid 20:25 or resid 50:55 or resid 73:75 or resid 90:94 or resid 112:116 or resid 142:147 or resid 165:169 or resid 190:194 or resid 214:218 or resid 236:240 or resid 253:258 or resid 303:307) and name CA'])
