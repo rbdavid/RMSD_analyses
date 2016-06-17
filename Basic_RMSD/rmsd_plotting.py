@@ -4,14 +4,12 @@
 # PREAMBLE:
 
 from plotting_functions import *
-import sel_list
+from sel_list import *
 
 dat = sys.argv[1]  
 system = sys.argv[2]
 
-nSel = len(sel_list.sel)
-
-equilib = 0
+nSel = len(sel)
 
 # ----------------------------------------
 # MAIN PROGRAM:
@@ -27,7 +25,7 @@ for i in range(nSteps):
 	time[i] = i*0.002		# units of time in ns; each frame is separated by 0.002 ns 
 
 for i in range(nSel):
-	selection = sel_list.sel[i][0]
+	selection = sel[i][0]
 
 	scat_hist(time[:],datalist[:,i],'k','Time (ns)','RMSD','%02d.%s' %(i,selection),'%s' %(system),yunits='$\AA$')
 
