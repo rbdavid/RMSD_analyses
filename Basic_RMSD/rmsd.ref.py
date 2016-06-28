@@ -2,6 +2,7 @@
 # ----------------------------------------
 # USAGE:
 
+# ./rmsd.ref.py pdb_file trajectory_location start end ref_pdb_file system_descriptor
 
 # ----------------------------------------
 # PREAMBLE:
@@ -14,9 +15,9 @@ from MDAnalysis.analysis.align import *
 from sel_list import *
 from distance_functions import *
 
-pdb = sys.argv[1]
-traj_loc = sys.argv[2]
-start = int(sys.argv[3])
+pdb = sys.argv[1]			# point to a pdb or prmtop or psf file (untested for both prmtop and psf files)
+traj_loc = sys.argv[2]			# point to the location of the trajectory files
+start = int(sys.argv[3])		# integer describing 
 end = int(sys.argv[4])
 ref_pdb = sys.argv[5]
 system = sys.argv[6]
@@ -28,7 +29,7 @@ nSel = len(sel)
 flush = sys.stdout.flush
 
 # ----------------------------------------
-# SUBROUTINES:
+# FUNCTIONS:
 
 def ffprint(string):
 	print '%s' %(string)
@@ -49,7 +50,7 @@ def summary(nSteps):
 	sum_file.close()
 
 # ----------------------------------------
-# MAIN PROGRAM:
+# MAIN:
 
 ref = MDAnalysis.Universe('%s' %(ref_pdb))
 ref_align = ref.select_atoms(alignment)

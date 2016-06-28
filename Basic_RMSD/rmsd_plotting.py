@@ -12,7 +12,7 @@ system = sys.argv[2]
 nSel = len(sel)
 
 # ----------------------------------------
-# MAIN PROGRAM:
+# MAIN:
 
 datalist = np.loadtxt(dat)
 
