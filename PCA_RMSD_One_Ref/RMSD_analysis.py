@@ -16,9 +16,9 @@ from distance_functions import *
 # ----------------------------------------
 # VARIABLE DECLARATION
 
-ref_file = sys.argv[1]
-traj_loc = sys.argv[2]
-number = int(sys.argv[3])		# Corresponds to which system you want to compare against...
+ref_file = sys.argv[1]			# pointer to the pdb file to be used as the reference structure
+traj_loc = sys.argv[2]			# pointer to the trajectory positions (or really the position where all systems are stored); look at this variable's use in the script
+number = int(sys.argv[3])		# integer identifying which system is used as the reference structure; use python indexing for the ref_list variable
 
 flush = sys.stdout.flush
 
