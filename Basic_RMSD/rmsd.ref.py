@@ -17,10 +17,10 @@ from distance_functions import *
 
 pdb = sys.argv[1]			# point to a pdb or prmtop or psf file (untested for both prmtop and psf files)
 traj_loc = sys.argv[2]			# point to the location of the trajectory files
-start = int(sys.argv[3])		# integer describing 
-end = int(sys.argv[4])
-ref_pdb = sys.argv[5]
-system = sys.argv[6]
+start = int(sys.argv[3])		# integer describing first production run to be analyzed
+end = int(sys.argv[4])			# integer describing last production run to be analyzed
+ref_pdb = sys.argv[5]			# point to the pdb to be used as the reference structure
+system = sys.argv[6]			# system descriptor for the analysis/system being analyzed
 
 alignment = 'protein and name CA and (resid 20:25 or resid 50:55 or resid 73:75 or resid 90:94 or resid 112:116 or resid 142:147 or resid 165:169 or resid 190:194 or resid 214:218 or resid 236:240 or resid 253:258 or resid 303:307)'
 
