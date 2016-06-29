@@ -13,7 +13,7 @@ import os
 import matplotlib.pyplot as plt
 from matplotlib.ticker import NullFormatter
 from mpl_toolkits.mplot3d import Axes3D
-#from fn_plotting import *
+
 
 # ----------------------------------------
 # VARIABLE DECLARATION
@@ -29,6 +29,7 @@ frame.append(['ssRNA+ADP+Pi',650000,'limegreen','.'])
 frame.append(['ssRNA+ADP',650000,'orangered','.'])
 frame.append(['ssRNA+Pi',650000,'crimson','.'])
 #frame.append([,,,])
+
 nSys = len(frame)
 
 legend_list = []
@@ -36,7 +37,6 @@ for i in range(nSys):
 	legend_list.append(frame[i][0])
 
 flush = sys.stdout.flush
-changedir = os.chdir
 
 # ----------------------------------------
 # SUBROUTINES:
@@ -48,26 +48,11 @@ def ffprint(string):
 # ----------------------------------------
 # MAIN PROGRAM:
 
-eigens = []
-for i in range(num_eigens):
-	eigens.append('%02d.projection.dat' %(i))
-
 # PLOTTING EIGENVALUES...
-eigvalues = np.loadtxt('eigenvalues.dat')
-nSteps = len(eigvalues)
-print nSteps
-cumulative_eigval = np.zeros(nSteps)
-total_eigval = 0
-for j in range(nSteps):
-	total_eigval += eigvalues[j]
-	cumulative_eigval[j] = total_eigval
+eigval = np.loadtxt('eigenvalues.dat')
+nVal = len(eigval)
 
-out1 = open('cumulative_eigenvalues.dat','w')
-for j in range(nSteps):
-	out1.write('%f   %f\n' %(eigvalues[j]/total_eigval,cumulative_eigval[j]))
-out1.close()
-
-plt.plot(cumulative_eigval[:10]/total_eigval,'k.')
+plt.plot(eigval[:10,1],'ko')
 plt.grid(b=True, which='major', axis='both', color='#808080', linestyle='--')
 plt.xlabel('Eigen Number')
 plt.ylim((0,1.01))
@@ -75,6 +60,7 @@ plt.ylabel('% of Total Eigenvalues')
 plt.savefig('eigenvalues.png')
 plt.close()
 
+# PLOTTING 2D PROJECTIONS
 for j in range(num_eigens-1):
 	proj0 = np.loadtxt('%02d.projection.dat' %(j))
 	for k in range(j+1, num_eigens):
@@ -92,7 +78,7 @@ for j in range(num_eigens-1):
 		plt.savefig('projection_%02d_%02d.png' %(j,k),dpi=300)
 		plt.close()
 
-
+# PLOTTING 2D PROJECTIONS
 proj0 = np.loadtxt('00.projection.dat')
 proj1 = np.loadtxt('01.projection.dat')
 proj2 = np.loadtxt('02.projection.dat')
