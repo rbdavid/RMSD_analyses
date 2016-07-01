@@ -17,11 +17,11 @@ from distance_functions import *
 # ----------------------------------------
 # VARIABLE DECLARATION
 
-system_loc = sys.argv[1]
-pdb_file = sys.argv[2]
-system = sys.argv[3]
-start = int(sys.argv[4])
-end = int(sys.argv[5])
+pdb_file = sys.argv[1]
+system = sys.argv[2]
+start = int(sys.argv[3])
+end = int(sys.argv[4])
+system_loc = sys.argv[5]
 
 flush = sys.stdout.flush
 
@@ -48,16 +48,15 @@ def summary(nSteps):
 	for i in range(len(sys.argv)):
 		sum_file.write('%s ' %(sys.argv[i]))
 	sum_file.write('\n\n')
-	sum_file.write('output is written to:\n')
+	sum_file.write('Progress output is written to:\n')
 	sum_file.write('	%s.output\n' %(system))
-	sum_file.write('	%s.rmsd.dat\n' %(system))
 	sum_file.write('\nTotal number of steps analyzed: %d\n' %(nSteps))
 	sum_file.write('\nAtom selections analyzed:\n')
 	for i in range(nSel):
 		sum_file.write('	%02d   %s   %s\n' %(i,sel[i][0],sel[i][1]))
-	sum_file.write('\nSystems used as reference structures:\n')
-	for i in range(nSys):
-		sum_file.write('	%s, %s%s%s\n' %(ref[i][0],system_loc,ref[i][0],ref_name))
+	sum_file.write('\n%d structures are used as references:\n' %(nRef))
+	for i in range(nRef):
+		sum_file.write('	%s, %s, %s%s/%s, RMSD data saved to: %02d_ref.rmsd.dat \n' %(ref[i][0],ref[i][2],system_loc,ref[i][0],ref[i][1],i))
 	sum_file.close()
 
 # ----------------------------------------
@@ -82,8 +81,8 @@ for i in range(nRef):
 		pos0.append(temp_ref.select_atoms(sel[j][1]).positions)
 
 	pos_list[i] = pos0
-	temp_file = open('%02d_ref.rmsd.dat' %(i))
-	out_list.append(temp_file)
+	temp_out = open('%02d_ref.rmsd.dat' %(i))
+	out_list.append(temp_out)
 
 out1.write('Finished collecting the reference structure data\n')
 
