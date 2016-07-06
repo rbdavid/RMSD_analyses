@@ -81,7 +81,7 @@ for i in range(nRef):
 		pos0.append(temp_ref.select_atoms(sel[j][1]).positions)
 
 	pos_list[i] = pos0
-	temp_out = open('%02d_ref.rmsd.dat' %(i))
+	temp_out = open('%02d_ref.rmsd.dat' %(i),'w')
 	out_list.append(temp_out)
 
 out1.write('Finished collecting the reference structure data\n')
