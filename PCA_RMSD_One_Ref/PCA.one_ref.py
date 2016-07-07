@@ -10,7 +10,6 @@ import numpy as np
 from numpy.linalg import *
 import sys
 import os
-from sel_list import *
 
 # ----------------------------------------
 # VARIABLE DECLARATION
@@ -35,8 +34,6 @@ def ffprint(string):
 # ----------------------------------------
 # MAIN:
 
-nSel = len(sel_list.sel)
-
 datalist1 = np.loadtxt('%s.rmsd.dat' %(system))
 
 centered_matrix = datalist1 - np.mean(datalist1,axis=0)          # average RMSD value of columns (axis=0)
@@ -50,7 +47,7 @@ nVec = len(eigval)
 cumulative_eigval = np.zeros(nVec)
 total_eigval = 0
 for i in range(nVec):
-	total_eigval += eigvalues[i]
+	total_eigval += eigval[i]
 	cumulative_eigval[i] = total_eigval
 
 out1 = open('eigenvalues.dat','w')
