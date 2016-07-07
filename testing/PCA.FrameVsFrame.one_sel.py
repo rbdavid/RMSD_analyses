@@ -45,8 +45,6 @@ datalist1 = np.loadtxt(rmsd_file)
 
 nSteps = int(len(datalist))
 
-
-
 for i in range(nSel):
 	ffprint('Beginning PCA analysis of %s selection' %(sel[i][0]))
 	changedir('%s' %(sel[i][0]))
