@@ -53,7 +53,7 @@ for i in range(nVec):
 out1 = open('eigenvalues.dat','w')
 out2 = open('eigenvectors.dat','w')
 for i in range(nVec):
-	out1.write('%f   %f   %f\n' %(eigval[i],eigval[i]/total_eigval,cumulative_eigval[i]))
+	out1.write('%f   %f   %f   %f\n' %(eigval[i],eigval[i]/total_eigval,cumulative_eigval[i],cumulative_eigval[i]/total_eigval))
 	for j in range(len(eigvec[:,0])):
 		out2.write('%f   ' %(eigvec[j,i]))
 	out2.write('\n')

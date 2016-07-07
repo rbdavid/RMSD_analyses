@@ -52,7 +52,7 @@ def ffprint(string):
 eigval = np.loadtxt('eigenvalues.dat')
 nVal = len(eigval)
 
-plt.plot(eigval[:10,1],'ko')
+plt.plot(eigval[:10,3],'ko')
 plt.grid(b=True, which='major', axis='both', color='#808080', linestyle='--')
 plt.xlabel('Eigen Number')
 plt.ylim((0,1.01))
