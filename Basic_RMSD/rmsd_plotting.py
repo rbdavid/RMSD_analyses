@@ -4,29 +4,29 @@
 # PREAMBLE:
 
 from plotting_functions import *
-from sel_list import *
 
-dat = sys.argv[1]  
-system = sys.argv[2]
-
-nSel = len(sel)
+data_file = sys.argv[1]  
+selection_list = sys.argv[2]
+system = sys.argv[3]
 
 # ----------------------------------------
 # MAIN:
 
-datalist = np.loadtxt(dat)
-
-nSteps = len(datalist[:,0])
-print 'Number of selections: %d, number of steps: %d' %(nSel,nSteps)
+datalist = np.loadtxt(data_file)
+nSels = len(datalist[0])
+nSteps = len(datalist)
+print 'Number of selections: %d, number of steps: %d' %(nSels,nSteps)
 
 time = np.zeros(nSteps)
-
 for i in range(nSteps):
 	time[i] = i*0.002		# units of time in ns; each frame is separated by 0.002 ns 
 
+selection_titles = []
+with open(selection_list,'r') as f:
+	for line in f:
+		temp = line.split('   ')
+		selection_titles.append('%02d.%s'%(int(temp[0]),temp[1]))
+
 for i in range(nSel):
-	selection = sel[i][0]
-
-	scat_hist(time[:],datalist[:,i],'k','Time (ns)','RMSD','%02d.%s' %(i,selection),'%s' %(system),yunits='$\AA$')
-
+	scat_hist(time[:],datalist[:,i],'k','Time (ns)','RMSD',selection_titles[i],'%s' %(system),yunits='$\AA$')
 
