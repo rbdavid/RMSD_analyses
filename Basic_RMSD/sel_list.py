@@ -30,9 +30,8 @@ sel.append(['d3_gate','protein and resid 432:442 and not name H*'])
 #sel.append(['ADP','resname adp and not name H*'])
 #sel.append(['PHX','resname PHX and not name H*'])
 #sel.append(['MG','resname MG'])
-
-sel.append(['atp_bp','backbone and (resid 27:35 or resid 60 or resid 63:64 or resid 117:118 or resid 147 or resid 149 or resid 159 or resid 245:249 or resid 288:289 or resid 292:293 or resid 296)'])
-sel.append(['rna_bc','backbone and (resid 55:61 or resid 74:84 or resid 93:106 or resid 121:126 or resid 195:200 or resid 218:224 or resid 240:246 or resid 260:264 or resid 276 or resid 282 or resid 319:323 or resid 367:368 or resid 370:377 or resid 431:440 or resid 442 or resid 451)'])
+#sel.append(['atp_bp','backbone and (resid 27:35 or resid 60 or resid 63:64 or resid 117:118 or resid 147 or resid 149 or resid 159 or resid 245:249 or resid 288:289 or resid 292:293 or resid 296)'])
+#sel.append(['rna_bc','backbone and (resid 55:61 or resid 74:84 or resid 93:106 or resid 121:126 or resid 195:200 or resid 218:224 or resid 240:246 or resid 260:264 or resid 276 or resid 282 or resid 319:323 or resid 367:368 or resid 370:377 or resid 431:440 or resid 442 or resid 451)'])
 
 #sel.append(['',''])
 
