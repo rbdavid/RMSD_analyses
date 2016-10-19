@@ -27,6 +27,6 @@ with open(selection_list,'r') as f:
 		temp = line.split('   ')
 		selection_titles.append('%02d.%s'%(int(temp[0]),temp[1]))
 
-for i in range(nSel):
+for i in range(nSels):
 	scat_hist(time[:],datalist[:,i],'k','Time (ns)','RMSD',selection_titles[i],'%s' %(system),yunits='$\AA$')
 
