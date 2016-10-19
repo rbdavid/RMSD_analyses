@@ -375,5 +375,5 @@ with open('%s.rmsd.dat'%(parameters['system']),'w') as f:
 		start += 1
 
 if parameters['write_summary']:
-	summary(nSteps)
+	summary()
 
