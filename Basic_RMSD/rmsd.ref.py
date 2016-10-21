@@ -155,7 +155,7 @@ def make_selections(analysis_universe,ref_universe,resname,resid,output_file,sel
 			count +=1
 
 		# CREATING THE SLECTION FOR THE PHOSPHATE OF NUCLEIC RESIDUES
-		sel_string = "resname %s and resid %s and name P OP1 OP2 O5' or bynum %s" %(resname,resid,analysis_universe.residues[resid][-1].index+1) 		### BUG HERE; WHAT IF THE INDEXING IS DIFFERENT BTW ANALYSIS AND REFERENCE UNIVERSES
+		sel_string = "(resname %s and resid %s and name P OP1 OP2 O5') or (resid %s and name O3')" %(resname,resid,analysis_universe.residues[resid-1].resid) 
 		u_temp = analysis_universe.select_atoms(sel_string)
 		selection_list.append(u_temp)
 		nAtoms.append(u_temp.n_atoms)
