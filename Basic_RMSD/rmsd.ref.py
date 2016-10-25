@@ -45,8 +45,8 @@ def ffprint(string):
 	print '%s' %(string)
         flush()
 
-necessary_parameters = ['ref_pdb','pdb','traj_loc','start','end','Wrapped','system','outputname','selection_file']
-all_parameters = ['ref_pdb','pdb','traj_loc','start','end','Wrapped','system','outputname','selection_file','alignment','substrates','homemade_selections','write_summary','summary_filename','selection_output']
+necessary_parameters = ['ref_pdb','pdb','traj_loc','start','end','Wrapped','outputname','selection_file']
+all_parameters = ['ref_pdb','pdb','traj_loc','start','end','Wrapped','outputname','selection_file','alignment','substrates','homemade_selections','write_summary','summary_filename','selection_output']
 def config_parser(config_file):	# Function to take config file and create/fill the parameter dictionary 
 	for i in range(len(necessary_parameters)):
 		parameters[necessary_parameters[i]] = ''
@@ -78,7 +78,7 @@ def summary():
 			f.write('%s = %s \n' %(i,parameters[i]))
 		f.write('\n\n')
 		f.write('output is written to:\n')
-		f.write('	%s.rmsd.dat\n' %(parameters['system']))
+		f.write('	%s\n' %(parameters['outputname']))
 		f.write('\nNumber of steps analyzed: %d\n' %(nSteps))
 		f.write('\nAtom selections analyzed have been written out to %s\n' %(parameters['selection_output']))
 
@@ -338,7 +338,7 @@ with open('%s' %(parameters['selection_output']),'w') as f:
 nSteps = 0
 start = int(parameters['start'])
 end = int(parameters['end'])
-with open('%s.rmsd.dat'%(parameters['system']),'w') as f:
+with open(parameters['outputname'],'w') as f:
 	ffprint('Beginning trajectory analysis')
 	while start <= end:
 		ffprint('Loading trajectory %s' %(start))
