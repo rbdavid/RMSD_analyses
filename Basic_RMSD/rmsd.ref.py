@@ -57,7 +57,7 @@ def config_parser(config_file):	# Function to take config file and create/fill t
 	parameters['homemade_selections'] = None
 	parameters['write_summary'] = False 
 	parameters['summary_filename'] = 'rmsd.summary'
-	parameters['summary_filename'] = 'selections.txt'
+	parameters['selection_output'] = 'selections.txt'
 
 	# GRABBING PARAMETER VALUES FROM THE CONFIG FILE:
 	execfile(config_file,parameters)
@@ -114,7 +114,7 @@ def make_selections(analysis_universe,ref_universe,resname,resid,output_file,sel
 		count +=1
 
 		# CREATING THE SLECTION FOR THE SUGAR OF NUCLEIC RESIDUES
-		if resname in ['A5','G5','C5','T5','C5']:
+		if resname in ['A5','G5','C5','T5','U5']:
 			sel_string = 'resname %s and resid %d and %s' %(resname,resid,sugar_5)
 			u_temp = analysis_universe.select_atoms(sel_string)
 			selection_list.append(u_temp)
@@ -128,7 +128,7 @@ def make_selections(analysis_universe,ref_universe,resname,resid,output_file,sel
 			count +=1
 			return
 
-		elif resname in ['A3','U3','C3','G3']:
+		elif resname in ['A3','U3','C3','G3','T3']:
 			sel_string = 'resname %s and resid %d and %s' %(resname,resid,sugar_3)
 			u_temp = analysis_universe.select_atoms(sel_string)
 			selection_list.append(u_temp)
