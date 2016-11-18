@@ -16,15 +16,6 @@ from distance_functions import *
 # ----------------------------------------
 # VARIABLE DECLARATION
 
-ref_file = sys.argv[1]			# pointer to the pdb file to be used as the reference structure
-traj_loc = sys.argv[2]			# pointer to the trajectory positions (or really the position where all systems are stored); look at this variable's use in the script
-number = int(sys.argv[3])		# integer identifying which system is used as the reference structure; use python indexing for the ref_list variable
-
-flush = sys.stdout.flush
-
-alignment = 'protein and name CA and (resid 20:25 or resid 50:55 or resid 73:75 or resid 90:94 or resid 112:116 or resid 142:147 or resid 165:169 or resid 190:194 or resid 214:218 or resid 236:240 or resid 253:258 or resid 303:307)'
-important = 'protein'
-
 ref_list = []
 ref_list.append(['AMBER_apo', 21, 150])	
 ref_list.append(['AMBER_atp', 21, 150])		
@@ -33,6 +24,15 @@ ref_list.append(['AMBER_ssrna_atp', 21, 150])
 ref_list.append(['AMBER_ssrna_adp_pi', 21, 150])	
 ref_list.append(['AMBER_ssrna_adp', 21, 150])	
 ref_list.append(['AMBER_ssrna_pi', 21, 150])		
+
+ref_file = sys.argv[1]			# pointer to the pdb file to be used as the reference structure
+traj_loc = sys.argv[2]			# pointer to the trajectory positions (or really the position where all systems are stored); look at this variable's use in the script
+number = int(sys.argv[3])		# integer identifying which system is used as the reference structure; use python indexing for the ref_list variable
+
+flush = sys.stdout.flush
+
+alignment = 'protein and name CA and (resid 20:25 50:55 73:75 90:94 112:116 142:147 165:169 190:194 214:218 236:240 253:258 303:307)'
+important = 'protein'
 
 nSys = len(ref_list)
 nSel = len(sel)
