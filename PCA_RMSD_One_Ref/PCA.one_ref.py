@@ -50,20 +50,18 @@ for i in range(nVec):
 	total_eigval += eigval[i]
 	cumulative_eigval[i] = total_eigval
 
-out1 = open('eigenvalues.dat','w')
-out2 = open('eigenvectors.dat','w')
-for i in range(nVec):
-	out1.write('%f   %f   %f   %f\n' %(eigval[i],eigval[i]/total_eigval,cumulative_eigval[i],cumulative_eigval[i]/total_eigval))
-	for j in range(len(eigvec[:,0])):
-		out2.write('%f   ' %(eigvec[j,i]))
-	out2.write('\n')
-out1.close()
-out2.close()
+
+
+with open('eigenvalues.dat','w') as W, open('eigenvectors.dat','w') as X:
+	for i in range(nVec):
+		W.write('%f   %f   %f   %f\n' %(eigval[i],eigval[i]/total_eigval,cumulative_eigval[i],cumulative_eigval[i]/total_eigval))
+		for j in range(len(eigvec[:,0])):
+			X.write('%f   ' %(eigvec[j,i]))
+		X.write('\n')
 
 for i in range(nVec):
-	out = open('%02d.projection.dat' %(i), 'w')
 	a_b = dot_prod(centered_matrix, eigvec[:,idx[i]])
-	for j in range(len(a_b)):
-		out.write('%f \n' %(a_b[j]))
-	out.close()
+	with open('%02d.projection.dat'%(i),'w') as W:
+		for j in range(len(a_b)):
+			W.write('%f \n' %(a_b[j]))
 
