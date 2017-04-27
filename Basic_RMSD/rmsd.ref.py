@@ -46,13 +46,14 @@ def ffprint(string):
         flush()
 
 necessary_parameters = ['ref_pdb','pdb','traj_loc','start','end','Wrapped','outputname','selection_file']
-all_parameters = ['ref_pdb','pdb','traj_loc','start','end','Wrapped','outputname','selection_file','alignment','substrates','homemade_selections','write_summary','summary_filename','selection_output']
+all_parameters = ['ref_pdb','pdb','traj_loc','start','end','Wrapped','outputname','selection_file','alignment','wrapping_selection','substrates','homemade_selections','write_summary','summary_filename','selection_output']
 def config_parser(config_file):	# Function to take config file and create/fill the parameter dictionary 
 	for i in range(len(necessary_parameters)):
 		parameters[necessary_parameters[i]] = ''
 
 	# SETTING DEFAULT PARAMETERS FOR OPTIONAL PARAMETERS:
 	parameters['alignment'] = 'protein'
+	parameters['wrapping_selection'] = 'not (resname WAT or resname Na+ or resname Cl- or protein)'
 	parameters['substrates'] = None
 	parameters['homemade_selections'] = None
 	parameters['write_summary'] = False 
@@ -284,7 +285,7 @@ u = MDAnalysis.Universe(parameters['pdb'])
 u_align = u.select_atoms(parameters['alignment'])
 u_all = u.select_atoms('all')
 if not parameters['Wrapped']:
-	rest = u.select_atoms('not (resname WAT or resname Na+ or resname Cl- or protein)')
+	rest = u.select_atoms(parameters['wrapping_selection'])
 	rest_nRes = rest.n_residues
 
 if u_align.n_atoms != ref_align.n_atoms:
@@ -342,7 +343,7 @@ with open(parameters['outputname'],'w') as f:
 	ffprint('Beginning trajectory analysis')
 	while start <= end:
 		ffprint('Loading trajectory %s' %(start))
-		u.load_new('%sproduction.%s/production.%s.dcd' %(parameters['traj_loc'],start,start))
+		u.load_new(parameters['traj_loc']%(start,start))
 		nSteps += len(u.trajectory)
 		# Loop through trajectory
 		for ts in u.trajectory:
