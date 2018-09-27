@@ -1,6 +1,0 @@
-
-#
-# General notes: the system descriptor parameter is currently going unused... either remove it completely or make it optional...
-# Larger tasks: it would be nice to complete the functionalization of the full selection process (not just the homemade selection portion). This might allow for easier use of the same function in other analyses.
-#
-

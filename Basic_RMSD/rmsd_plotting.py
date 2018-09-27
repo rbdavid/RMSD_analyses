@@ -1,4 +1,4 @@
-#!/Library/Frameworks/Python.framework/Versions/2.7/bin/python
+#!/home/rbdavid/bin/python
 # USAGE:
 
 # PREAMBLE:
@@ -19,7 +19,7 @@ print 'Number of selections: %d, number of steps: %d' %(nSels,nSteps)
 
 time = np.zeros(nSteps)
 for i in range(nSteps):
-	time[i] = i*0.002		# units of time in ns; each frame is separated by 0.002 ns 
+	time[i] = i*0.005		# units of time in ns; each frame is separated by 0.002 ns 
 
 selection_titles = []
 with open(selection_list,'r') as f:
